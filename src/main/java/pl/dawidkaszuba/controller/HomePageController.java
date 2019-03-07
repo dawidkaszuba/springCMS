@@ -23,9 +23,7 @@ public class HomePageController {
     @GetMapping("/articles")
     public String getLastArticles(Model model){
         List<Article> lastArticles = articleDao.getLastArticles(5);
-        List<Category> categories = categoriesDao.findAll();
         model.addAttribute("lastArticles", lastArticles);
-        model.addAttribute("categories",categories);
         return "articles";
     }
 
@@ -34,5 +32,18 @@ public class HomePageController {
         List<Article> articlesByCategory = articleDao.getArticlesByCategory(id);
         model.addAttribute("articlesByCategory", articlesByCategory);
         return "articlesByCategory";
+    }
+
+    @GetMapping("/")
+    public String home(){
+
+        return "home";
+    }
+
+    @GetMapping("/categories")
+    public String allCategories(Model model){
+        List<Category> categories = categoriesDao.findAll();
+        model.addAttribute("categories",categories);
+        return "categories";
     }
 }

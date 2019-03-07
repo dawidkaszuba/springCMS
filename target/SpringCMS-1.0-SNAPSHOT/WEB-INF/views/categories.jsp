@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>Dash</title>
+    <title>Articles</title>
     <!-- Bootstrap CSS -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -46,7 +46,7 @@
 
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">add category</a>
-                        <a class="dropdown-item" href="/categories">all categories</a>
+                        <a class="dropdown-item" href="#">all categories</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -64,27 +64,25 @@
         </div>
 
     </nav>
+    <div class="row">
+        <h1>categories</h1>
+        <table class="table">
+            <tr><th>NAME</th><th>ARTICLES</th></tr>
+            <c:forEach items="${categories}" var="catagory">
+                <tr><td>${catagory.name}</td><td><a href="/categories/${catagory.id}">get all articles</a></td></tr>
+            </c:forEach>
+        </table>
 
-    <table class="table">
-        <tr><th>TITLE</th><th>CREATED</th><th>CONTENT</th></tr>
-        <c:forEach items="${articlesByCategory}" var="article">
-            <tr><td>${article.title}</td><td>${article.created}</td><td>${article.content}</td></tr>
-        </c:forEach>
-    </table>
-
-
-</div>
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-        crossorigin="anonymous"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
 </div>
 </body>
 </html>
