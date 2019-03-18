@@ -41,4 +41,9 @@ public class ArticleDao {
         query.setParameter("category_id",id);
         return query.getResultList();
     }
+
+    public List<Article> findAll() {
+        Query query = this.entityManager.createQuery("SELECT a FROM Article a");
+        return query.getResultList();
+    }
 }

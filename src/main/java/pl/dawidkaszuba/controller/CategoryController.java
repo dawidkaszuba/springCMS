@@ -41,6 +41,16 @@ public class CategoryController {
         this.categoriesDao.delete(this.categoriesDao.findBuId(id));
         return "redirect:/categories/list";
     }
+    @GetMapping("/edit/{id}")
+    public String editCategory(@PathVariable Long id, Model model){
+        model.addAttribute("category",this.categoriesDao.findBuId(id));
+        return "category/edit";
+    }
+    @PostMapping("/saveEdited")
+    public String saveEditedCategory(@ModelAttribute Category category){
+        this.categoriesDao.update(category);
+        return "redirect:/categories/list";
+    }
 
     @GetMapping("/list")
     public String allCategories(Model model){

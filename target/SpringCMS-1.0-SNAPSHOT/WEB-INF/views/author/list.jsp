@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>Articles</title>
+    <title>Authors</title>
     <!-- Bootstrap CSS -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -16,14 +16,14 @@
 
 <div class="container">
     <jsp:include page="../fragments/header.jsp"/>
-    <h1>categories</h1>
+    <h1>Authors</h1>
     <div class="row">
         <table class="table">
-            <tr><th>NAME</th><th>ARTICLES</th></tr>
-            <c:forEach items="${categories}" var="category">
-                <tr><td>${category.name}</td><td><a href="/articles/${category.id}">get all articles</a></td>
-                    <td><a href="/categories/delete/${category.id}">delete</a></td>
-                    <td><a href="/categories/edit/${category.id}">edit</a></td>
+            <tr><th>Name</th><th>&nbsp;</th></tr>
+            <c:forEach items="${authors}" var="author">
+                <tr><td>${author.firstName}&nbsp${author.lastName}</td>
+                    <td><a href="/author/delete/${author.id}">delete</a></td>
+                    <td><a href="/author/edit/${author.id}">edit</a></td>
                 </tr>
             </c:forEach>
         </table>

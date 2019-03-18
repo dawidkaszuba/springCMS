@@ -1,7 +1,10 @@
 package pl.dawidkaszuba.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Article {
@@ -11,12 +14,12 @@ public class Article {
     private String title;
     @ManyToOne
     private Author author;
-    @ManyToOne
-    private Category category;
+    @ManyToMany
+    private List<Category> categories;
     @Column(columnDefinition = "TEXT")
     private String content;
-    private LocalDateTime created;
-    private LocalDateTime updated;
+    private LocalDate created;
+    private LocalDate updated;
 
     public Article() {
     }
@@ -45,12 +48,12 @@ public class Article {
         this.author = author;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public String getContent() {
@@ -61,19 +64,19 @@ public class Article {
         this.content = content;
     }
 
-    public LocalDateTime getCreated() {
+    public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(LocalDate created) {
         this.created = created;
     }
 
-    public LocalDateTime getUpdated() {
+    public LocalDate getUpdated() {
         return updated;
     }
 
-    public void setUpdated(LocalDateTime updated) {
+    public void setUpdated(LocalDate updated) {
         this.updated = updated;
     }
 }

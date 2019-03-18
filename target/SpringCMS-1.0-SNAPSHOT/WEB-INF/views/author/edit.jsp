@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Articles</title>
+    <title>edit Author</title>
     <!-- Bootstrap CSS -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -11,23 +12,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 </head>
-
 <body class="bg-dark text-light">
-
 <div class="container">
     <jsp:include page="../fragments/header.jsp"/>
-    <h1>categories</h1>
+    <h1>author</h1>
     <div class="row">
-        <table class="table">
-            <tr><th>NAME</th><th>ARTICLES</th></tr>
-            <c:forEach items="${categories}" var="category">
-                <tr><td>${category.name}</td><td><a href="/articles/${category.id}">get all articles</a></td>
-                    <td><a href="/categories/delete/${category.id}">delete</a></td>
-                    <td><a href="/categories/edit/${category.id}">edit</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-
+        <form:form method="post" modelAttribute="author" action="/author/saveEdited">
+            <form:input path="id" value="${author.id}" type="hidden"></form:input>
+            <label>First name<form:input path="firstName" value="${author.firstName}"/></label>
+            <label>Last name<form:input path="lastName" value="${author.lastName}"/></label>
+            <input type="submit" value="Change">
+        </form:form>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

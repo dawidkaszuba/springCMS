@@ -30,7 +30,7 @@
                 </div>
                 <hr>
 
-                <c:forEach items="${lastArticles}" var="article">
+                <c:forEach items="${articles}" var="article">
                     <div class="col-md-4">
                         <div><p><span>${article.title}</span></p></div>
                     </div>

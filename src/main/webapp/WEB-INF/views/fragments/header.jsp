@@ -17,7 +17,7 @@
                 <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">articles</a>
 
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">add article</a>
+                    <a class="dropdown-item" href="/articles/add">add article</a>
                     <a class="dropdown-item" href="/articles/list">all articles</a>
                 </div>
             </li>
@@ -35,8 +35,8 @@
                 <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">authors</a>
 
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">add author</a>
-                    <a class="dropdown-item" href="#">all authors</a>
+                    <a class="dropdown-item" href="/author/add">add author</a>
+                    <a class="dropdown-item" href="/author/list">all authors</a>
                 </div>
             </li>
 
