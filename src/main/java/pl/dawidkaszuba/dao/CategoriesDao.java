@@ -30,4 +30,7 @@ public class CategoriesDao {
         Query query = entityManager.createQuery("SELECT c FROM Category c");
         return query.getResultList();
     }
+    public void delete(Category category){
+        this.entityManager.remove(this.entityManager.contains(category) ? category : this.entityManager.merge(category));
+    }
 }
