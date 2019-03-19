@@ -65,6 +65,11 @@ public class ArticleController {
         model.addAttribute("article", this.articleDao.findById(id));
         return "article/edit";
     }
+    @PostMapping("/saveEdited")
+    public String saveEditedArticle(@ModelAttribute Article article){
+        this.articleDao.update(article);
+        return "redirect:/articles/list";
+    }
 
 
 

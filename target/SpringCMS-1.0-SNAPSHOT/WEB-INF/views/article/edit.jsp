@@ -21,7 +21,7 @@
     <h1>edit  article</h1>
     <div class="row">
 
-        <form:form method="post" modelAttribute="article">
+        <form:form method="post" modelAttribute="article" action="/articles/saveEdited">
             <form:input path="id" value="${article.id}" type="hidden"></form:input>
             <label>title<form:input path="title" type="text" value="${article.title}"/></label><br>
             <label>author
