@@ -1,6 +1,11 @@
 package pl.dawidkaszuba.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -11,12 +16,17 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
+    @Size(max=200)
     private String title;
     @ManyToOne
     private Author author;
     @ManyToMany(fetch = FetchType.EAGER)
+    @NotEmpty
     private List<Category> categories;
     @Column(columnDefinition = "TEXT")
+    @NotEmpty
+    @Size(min=100)
     private String content;
     private LocalDate created;
     private LocalDate updated;

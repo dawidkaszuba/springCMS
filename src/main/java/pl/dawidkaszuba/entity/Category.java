@@ -1,6 +1,9 @@
 package pl.dawidkaszuba.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Category {
@@ -8,6 +11,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(columnDefinition = "VARCHAR(100)", nullable = false)
+    @Size(min=5)
+    @NotEmpty
     private String name;
     private String description;
 
