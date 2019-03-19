@@ -16,11 +16,12 @@ INSERT INTO Article (content, title, updated, created, author_id) VALUES ('Rząd
 INSERT INTO Article (content, title, updated, created, author_id) VALUES ('Bury poranek, szaruga i dziki wicher. Deszcz zacina poziomo, zdaje się zostawiać bruzdy na polikach. Wtaczasz się sfatygowany do biura, składasz parasol… i masz ochotę zakopać się pod stertą suchych liści i tam przeczekać do emerytury. Opatrzności, znowu to samo, dodaj mi sił…','Nie pożądaj pasji bliźniego swego…', '2019-03-06T10:15:30', '2019-03-05T10:14:30', 5);
 INSERT INTO Article (content, title, updated, created, author_id) VALUES ('Z czym kojarzy Ci się określenie “budżet domowy”? Jeżeli pierwszym, co przyszło Ci do głowy jest nudne, żmudne i bezrefleksyjne zbieranie paragonów czy spisywanie najdrobniejszego wydatku, mam dla Ciebie dobrą wiadomość: możesz odetchnąć z ulgą. To nie o to chodzi.Dobrze zrobiony budżet domowy jest jednym z najlepszych narzędzi pomagających zadbać o własne finanse. Jest również narzędziem prostym i skutecznym. Bardzo łatwo zrozumiesz mechanizm jego działania, jeżeli tylko poświęcisz chwilę, by w swojej wyobraźni wcielić się w rolę pracodawcy, który… Zatrudnia swoje własne pieniądze.','FBO 049: JAK PRZYGOTOWAĆ ŚWIETNY BUDŻET DOMOWY?', '2019-03-06', '2019-03-05', 4 );
 INSERT INTO Article (content, title, updated, created, author_id) VALUES ('I tak oto idea mądrego dbania o własne finanse zatacza coraz szersze kręgi.Co ciekawe, udaje mi się zarazić nią nie tylko Czytelników bloga, lecz także moich przyjaciół, znajomych, a nawet współpracowników. Wiem, że to działa – bo świetnie sprawdziło się w mojej rodzinie. A teraz zobaczcie, jakie zmiany w ciągu zaledwie sześciu miesięcy nastąpiły w życiu Justyny!','DLACZEGO WARTO PROWADZIĆ BUDŻET DOMOWY? 5 SUPER POZYTYWNYCH EFEKTÓW. WNIOSKI PO SZEŚCIU MIESIĄCACH OD STARTU', '2019-03-06', '2019-03-05', 4);
-INSERT INTO Article_Category(Article_id,categories_id)VALUES (1,1);
-INSERT INTO Article_Category(Article_id,categories_id)VALUES (2,2);
-INSERT INTO Article_Category(Article_id,categories_id)VALUES (3,4);
-INSERT INTO Article_Category(Article_id,categories_id)VALUES (4,1);
-INSERT INTO Article_Category(Article_id,categories_id)VALUES (5,4);
-INSERT INTO Article_Category(Article_id,categories_id)VALUES (6,7);
+INSERT INTO Article_Category(Article_id,categories_id) VALUES (1,1);
+INSERT INTO Article_Category(Article_id,categories_id) VALUES (2,2);
+INSERT INTO Article_Category(Article_id,categories_id) VALUES (3,1);
+INSERT INTO Article_Category(Article_id,categories_id) VALUES (4,2);
+INSERT INTO Article_Category(Article_id,categories_id) VALUES (5,4);
+INSERT INTO Article_Category(Article_id,categories_id) VALUES (6,1);
+
 
 

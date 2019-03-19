@@ -33,11 +33,8 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}")
-    public String getArtilcesByCategory(@PathVariable long id, Model model){
-//        List<Article> articlesByCategory = articleDao.getArticlesByCategory(id);
-//        model.addAttribute("articlesByCategory", articlesByCategory);
-
-        //todo
+    public String getArtilcesByCategory(@PathVariable Long id, Model model){
+        model.addAttribute("articlesByCategory", articleDao.getArticlesByCategory(id));
         return "article/byCategory";
     }
 
@@ -56,6 +53,21 @@ public class ArticleController {
             return "redirect:/articles/list";
         }
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteArticle(@PathVariable Long id){
+        this.articleDao.delete(this.articleDao.findById(id));
+        return "redirect:/articles/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editArticle(@PathVariable Long id, Model model){
+        model.addAttribute("article", this.articleDao.findById(id));
+        return "article/edit";
+    }
+
+
+
 
     @ModelAttribute("authors")
     public List<Author> getAllAuthors(){

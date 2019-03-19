@@ -29,7 +29,7 @@
             <label>category
                 <form:select path="categories" items="${categories}" itemValue="id" itemLabel="name" multiple="true"/>
             </label><br>
-            <label>Content<form:textarea path="content"/></label><br>
+            <label>Content<form:textarea rows="10" cols="50" path="content"/></label><br>
             <label>created<form:input path="created" type="date"/></label><br>
             <label>updated<form:input path="updated" type="date"/></label><br>
             <input type="submit" value="Save">

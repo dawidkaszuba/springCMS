@@ -37,8 +37,8 @@ public class ArticleDao {
     }
 
     public List<Article> getArticlesByCategory(long id) {
-        Query query = entityManager.createQuery("SELECT a FROM Article a WHERE category_id=:category_id");
-        query.setParameter("category_id",id);
+        Query query = entityManager.createQuery("SELECT a FROM Article a Join a.categories c WHERE c.id= :id");
+        query.setParameter("id",id);
         return query.getResultList();
     }
 

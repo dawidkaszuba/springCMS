@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Add article</title>
+    <title>Editarticle</title>
     <!-- Bootstrap CSS -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -18,20 +18,21 @@
 <div class="container">
     <jsp:include page="../fragments/header.jsp"/>
 
-    <h1>Add article</h1>
+    <h1>edit  article</h1>
     <div class="row">
 
         <form:form method="post" modelAttribute="article">
-            <label>title<form:input path="title" type="text"/></label><br>
+            <form:input path="id" value="${article.id}" type="hidden"></form:input>
+            <label>title<form:input path="title" type="text" value="${article.title}"/></label><br>
             <label>author
-            <form:select path="author" items="${authors}" itemValue="id" itemLabel="lastName"/>
+                <form:select path="author" items="${authors}" itemValue="id" itemLabel="lastName"/>
             </label><br>
             <label>category
                 <form:select path="categories" items="${categories}" itemValue="id" itemLabel="name" multiple="true"/>
             </label><br>
-            <label>Content<form:textarea rows="10" cols="50" path="content"/></label><br>
-            <label>created<form:input path="created" type="date"/></label><br>
-            <label>updated<form:input path="updated" type="date"/></label><br>
+            <label>Content<form:textarea rows="10" cols="50" path="content" value="${article.content}"/></label><br>
+            <label>created<form:input path="created" type="date" value="${article.created}"/></label><br>
+            <label>updated<form:input path="updated" type="date" value="${article.updated}"/></label><br>
             <input type="submit" value="Save">
         </form:form>
 

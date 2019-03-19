@@ -19,31 +19,45 @@
 
         <h1>Articles</h1>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <span>TITLE</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <span>CREATED</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <span>CONTENT</span>
                 </div>
-                <hr>
+                <div class="col-md-1">
+                    <span>EDIT</span>
+                </div>
+                <div class="col-md-1">
+                    <span>DELETE</span>
+                </div>
+            </div>
 
+            <div class="row">
                 <c:forEach items="${articles}" var="article">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div><p><span>${article.title}</span></p></div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div><p><span>${article.created}</span></p></div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div><p><span>${fn:substring(article.content,0,200)}</span></p></div>
+                    </div>
+                    <div class="col-md-1">
+                        <div><a href="/articles/edit/${article.id}">edit</a></div>
+                    </div>
+                    <div class="col-md-1">
+                        <div><a href="/articles/delete/${article.id}">delete</a></div>
                     </div>
 
                 </c:forEach>
-
             </div>
+
+
 
 
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

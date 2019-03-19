@@ -14,7 +14,7 @@ public class Article {
     private String title;
     @ManyToOne
     private Author author;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Category> categories;
     @Column(columnDefinition = "TEXT")
     private String content;
