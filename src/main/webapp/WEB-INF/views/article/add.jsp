@@ -32,7 +32,10 @@
             <label>Content<form:textarea rows="10" cols="50" path="content"/></label><br>
             <label>created<form:input path="created" type="date"/></label><br>
             <label>updated<form:input path="updated" type="date"/></label><br>
+            <label>Is it draft? &nbsp<form:radiobutton  path="draft" value="true"/></label><br>
             <input type="submit" value="Save">
+            <div><form:errors path="*"></form:errors></div>
+
         </form:form>
 
     </div>

@@ -1,6 +1,7 @@
 package pl.dawidkaszuba.entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.dawidkaszuba.validator.IfFirstIsUpperCase;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +14,10 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
+    @IfFirstIsUpperCase
     private String firstName;
     @NotEmpty
+    @IfFirstIsUpperCase
     private String lastName;
 
     public Author() {

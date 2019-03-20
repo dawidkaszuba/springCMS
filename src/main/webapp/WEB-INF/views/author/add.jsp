@@ -21,6 +21,7 @@
             <label>First name<form:input path="firstName"/></label>
             <label>Last name<form:input path="lastName"/></label>
             <input type="submit" value="Save">
+            <div><form:errors path="*"></form:errors></div>
         </form:form>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

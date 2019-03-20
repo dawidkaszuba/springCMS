@@ -1,14 +1,12 @@
 package pl.dawidkaszuba.entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.dawidkaszuba.validator.IfFirstIsUpperCase;
+import pl.dawidkaszuba.validator.ValidationDraft;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,7 +14,7 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
+    @NotEmpty(groups = {ValidationDraft.class})
     @Size(max=200)
     private String title;
     @ManyToOne
@@ -25,11 +23,12 @@ public class Article {
     @NotEmpty
     private List<Category> categories;
     @Column(columnDefinition = "TEXT")
-    @NotEmpty
+    @NotEmpty(groups = {ValidationDraft.class})
     @Size(min=100)
     private String content;
     private LocalDate created;
     private LocalDate updated;
+    private boolean draft;
 
     public Article() {
     }
@@ -88,5 +87,13 @@ public class Article {
 
     public void setUpdated(LocalDate updated) {
         this.updated = updated;
+    }
+
+    public boolean isDraft() {
+        return draft;
+    }
+
+    public void setDraft(boolean draft) {
+        this.draft = draft;
     }
 }

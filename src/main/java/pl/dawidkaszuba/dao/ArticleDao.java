@@ -46,4 +46,9 @@ public class ArticleDao {
         Query query = this.entityManager.createQuery("SELECT a FROM Article a");
         return query.getResultList();
     }
+
+    public List<Article> getAllDrafts(){
+        Query query = this.entityManager.createQuery("SELECT a FROM Article a where a.draft=true");
+        return query.getResultList();
+    }
 }
