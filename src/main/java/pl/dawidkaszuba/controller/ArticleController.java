@@ -31,7 +31,7 @@ public class ArticleController {
 
     @GetMapping("/list")
     public String getAllArticles(Model model){
-        model.addAttribute("articles", this.articleDao.findAll());
+        model.addAttribute("articles", this.articleDao.findAllNotDraft());
         return "article/list";
     }
 

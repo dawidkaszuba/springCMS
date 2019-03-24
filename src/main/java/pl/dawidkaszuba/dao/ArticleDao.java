@@ -47,8 +47,15 @@ public class ArticleDao {
         return query.getResultList();
     }
 
+    public List<Article> findAllNotDraft() {
+        Query query = this.entityManager.createQuery("SELECT a FROM Article a where a.draft=0");
+        return query.getResultList();
+    }
+
+
+
     public List<Article> getAllDrafts(){
-        Query query = this.entityManager.createQuery("SELECT a FROM Article a where a.draft=true");
+        Query query = this.entityManager.createQuery("SELECT a FROM Article a where a.draft=1");
         return query.getResultList();
     }
 }
