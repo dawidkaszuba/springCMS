@@ -5,14 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.dawidkaszuba.dao.ArticleDao;
+import pl.dawidkaszuba.dao.AuthorDao;
+import pl.dawidkaszuba.dao.CategoriesDao;
 import pl.dawidkaszuba.entity.Article;
-import pl.dawidkaszuba.validator.DraftValidator;
+import pl.dawidkaszuba.entity.Author;
+import pl.dawidkaszuba.entity.Category;
 import pl.dawidkaszuba.validator.ValidationDraft;
+
+
+import java.util.List;
 
 
 @Controller
@@ -22,7 +25,9 @@ public class DraftController {
     @Autowired
     private ArticleDao articleDao;
     @Autowired
-    private DraftValidator draftValidator;
+    private AuthorDao authorDao;
+    @Autowired
+    private CategoriesDao categoriesDao;
 
 
 
@@ -33,14 +38,13 @@ public class DraftController {
     }
 
     @PostMapping("/add")
-    public String saveDraft(@Validated({ValidationDraft.class}) Article article, BindingResult bindingResult){
-        this.draftValidator.validate(article,bindingResult);
+    public String saveDraft(@Validated(ValidationDraft.class) Article article, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "article/add";
         }
         else{
             this.articleDao.save(article);
-            return "redirect:/articles/list";
+            return "redirect:/drafts/list";
         }
     }
 
@@ -51,9 +55,35 @@ public class DraftController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteArticle(@PathVariable Long id){
+    public String deleteDraft(@PathVariable Long id){
         this.articleDao.delete(this.articleDao.findById(id));
         return "redirect:/drafts/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editDraft(@PathVariable Long id, Model model){
+        model.addAttribute("article",this.articleDao.findById(id));
+        return "article/edit";
+    }
+    @PostMapping("/saveEdited")
+    public String saveEditedDraft(@Validated(ValidationDraft.class) Article article, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "redirect:/edit/"+article.getId();
+        }else if(article.isDraft()){
+            return "draft/list";
+        }else {
+            return "articles/list";
+        }
+    }
+
+
+    @ModelAttribute("authors")
+    public List<Author> getAllAuthors(){
+        return this.authorDao.findAll();
+    }
+    @ModelAttribute("categories")
+    public List<Category> getAllCategories(){
+        return this.categoriesDao.findAll();
     }
 }
 

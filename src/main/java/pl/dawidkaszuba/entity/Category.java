@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
+
 @Entity
 public class Category {
     @Id
@@ -15,6 +16,7 @@ public class Category {
     @NotEmpty
     private String name;
     private String description;
+
 
     public Category() {
     }
@@ -42,4 +44,6 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

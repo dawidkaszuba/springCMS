@@ -5,7 +5,9 @@ import pl.dawidkaszuba.validator.IfFirstIsUpperCase;
 import pl.dawidkaszuba.validator.ValidationDraft;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.groups.Default;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,17 +16,17 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty(groups = {ValidationDraft.class})
-    @Size(max=200)
+    @NotEmpty(groups = {ValidationDraft.class}, message = "title can not be empty")
+    @Size(max=200, groups = {ValidationDraft.class}, message = "title should has max 200 signs")
     private String title;
     @ManyToOne
     private Author author;
     @ManyToMany(fetch = FetchType.EAGER)
-    @NotEmpty
+    @NotNull(message = "Categories can not be empty")
     private List<Category> categories;
     @Column(columnDefinition = "TEXT")
-    @NotEmpty(groups = {ValidationDraft.class})
-    @Size(min=100)
+    @NotEmpty(groups = {ValidationDraft.class},message = "Content can not be empty")
+    @Size(min=100,groups = {ValidationDraft.class}, message = "Content should has min 100 signs")
     private String content;
     private LocalDate created;
     private LocalDate updated;

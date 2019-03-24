@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 import pl.dawidkaszuba.dao.ArticleDao;
 import pl.dawidkaszuba.dao.AuthorDao;
@@ -14,6 +13,7 @@ import pl.dawidkaszuba.entity.Author;
 import pl.dawidkaszuba.entity.Category;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -26,8 +26,7 @@ public class ArticleController {
     private AuthorDao authorDao;
     @Autowired
     private CategoriesDao categoriesDao;
-    @Autowired
-    private Validator validator;
+
 
 
     @GetMapping("/list")
@@ -53,6 +52,8 @@ public class ArticleController {
             return "article/add";
         }
         else{
+            LocalDate now = LocalDate.now();
+            article.setCreated(now);
             this.articleDao.save(article);
             return "redirect:/articles/list";
         }
@@ -71,6 +72,8 @@ public class ArticleController {
     }
     @PostMapping("/saveEdited")
     public String saveEditedArticle(@ModelAttribute Article article){
+        LocalDate now = LocalDate.now();
+        article.setUpdated(now);
         this.articleDao.update(article);
         return "redirect:/articles/list";
     }

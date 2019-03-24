@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Editarticle</title>
+    <title>Edit article</title>
     <!-- Bootstrap CSS -->
     <meta charset="utf-8">
     <meta lang="pl">
@@ -31,8 +31,8 @@
                 <form:select path="categories" items="${categories}" itemValue="id" itemLabel="name" multiple="true"/>
             </label><br>
             <label>Content<form:textarea rows="10" cols="50" path="content" value="${article.content}"/></label><br>
-            <label>created<form:input path="created" type="date" value="${article.created}"/></label><br>
-            <label>updated<form:input path="updated" type="date" value="${article.updated}"/></label><br>
+            <label>Is it draft? &nbsp<form:radiobutton  path="draft" value="true"/>YES
+                <form:radiobutton  path="draft" value="false"/>NO</label><br>
             <input type="submit" value="Save">
         </form:form>
 

@@ -44,7 +44,7 @@
                 <a class="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown" role="button">drafts</a>
 
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/articles/add">add draft</a>
+                    <a class="dropdown-item" href="/drafts/add">add draft</a>
                     <a class="dropdown-item" href="/drafts/list">all drafts</a>
                 </div>
             </li>
