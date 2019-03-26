@@ -1,7 +1,8 @@
 package pl.dawidkaszuba.entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import pl.dawidkaszuba.validator.IfFirstIsUpperCase;
+import pl.dawidkaszuba.validator.ListSize;
+import pl.dawidkaszuba.validator.ValidationArticle;
 import pl.dawidkaszuba.validator.ValidationDraft;
 
 import javax.persistence.*;
@@ -16,17 +17,17 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty(groups = {ValidationDraft.class}, message = "title can not be empty")
-    @Size(max=200, groups = {ValidationDraft.class}, message = "title should has max 200 signs")
+    @NotEmpty(groups = {ValidationArticle.class,ValidationDraft.class},message = "title can not be empty")
+    @Size(groups = {ValidationArticle.class,ValidationDraft.class},max=200,message = "title should has max 200 signs")
     private String title;
     @ManyToOne
     private Author author;
     @ManyToMany(fetch = FetchType.EAGER)
-    @NotNull(message = "Categories can not be empty")
+    @ListSize(groups = ValidationArticle.class)
     private List<Category> categories;
     @Column(columnDefinition = "TEXT")
-    @NotEmpty(groups = {ValidationDraft.class},message = "Content can not be empty")
-    @Size(min=100,groups = {ValidationDraft.class}, message = "Content should has min 100 signs")
+    @NotEmpty(groups = {ValidationArticle.class,ValidationDraft.class},message = "Content can not be empty")
+    @Size(groups = {ValidationArticle.class,ValidationDraft.class},min=100,message = "Content should has min 100 signs")
     private String content;
     private LocalDate created;
     private LocalDate updated;

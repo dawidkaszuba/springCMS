@@ -14,7 +14,7 @@ import pl.dawidkaszuba.entity.Author;
 import pl.dawidkaszuba.entity.Category;
 import pl.dawidkaszuba.validator.ValidationDraft;
 
-
+import javax.validation.groups.Default;
 import java.util.List;
 
 
@@ -66,10 +66,10 @@ public class DraftController {
         return "article/edit";
     }
     @PostMapping("/saveEdited")
-    public String saveEditedDraft(@Validated(ValidationDraft.class) Article article, BindingResult bindingResult){
+    public String saveEditedDraft(@Validated({Default.class}) Article article, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "redirect:/edit/"+article.getId();
-        }else if(article.isDraft()){
+        }else if(article.isDraft()){  //to nie działa....dlaczego
             return "draft/list";
         }else {
             return "articles/list";

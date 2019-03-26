@@ -45,9 +45,13 @@ public class AuthorController {
         return "author/edit";
     }
     @PostMapping("/saveEdited")
-    public String saveEditedAuthor(@ModelAttribute Author author){
+    public String saveEditedAuthor(@Valid Author author,BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "author/add";
+        }else{
         this.authorDao.update(author);
         return "redirect:/author/list";
+        }
     }
     @GetMapping("/delete/{id}")
     public String deleteAuthor(@PathVariable Long id){

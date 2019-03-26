@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.dawidkaszuba.dao.ArticleDao;
 import pl.dawidkaszuba.dao.AuthorDao;
@@ -11,8 +12,8 @@ import pl.dawidkaszuba.dao.CategoriesDao;
 import pl.dawidkaszuba.entity.Article;
 import pl.dawidkaszuba.entity.Author;
 import pl.dawidkaszuba.entity.Category;
+import pl.dawidkaszuba.validator.ValidationArticle;
 
-import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class ArticleController {
         return "article/add";
     }
     @PostMapping("/add")
-    public String saveArticle(@Valid Article article, BindingResult bindingResult){
+    public String saveArticle(@Validated({ValidationArticle.class}) Article article, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "article/add";
         }
@@ -70,16 +71,20 @@ public class ArticleController {
         model.addAttribute("article", this.articleDao.findById(id));
         return "article/edit";
     }
+
     @PostMapping("/saveEdited")
-    public String saveEditedArticle(@ModelAttribute Article article){
+    public String saveEditedArticle(@Validated({ValidationArticle.class}) Article article, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "redirect:/articles/edit/"+article.getId();
+        }
+        else{
+
         LocalDate now = LocalDate.now();
         article.setUpdated(now);
         this.articleDao.update(article);
         return "redirect:/articles/list";
+        }
     }
-
-
-
 
     @ModelAttribute("authors")
     public List<Author> getAllAuthors(){
