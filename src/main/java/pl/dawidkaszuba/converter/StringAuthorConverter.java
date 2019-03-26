@@ -2,15 +2,15 @@ package pl.dawidkaszuba.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import pl.dawidkaszuba.dao.AuthorDao;
 import pl.dawidkaszuba.entity.Author;
+import pl.dawidkaszuba.repository.AuthorRepository;
 
 public class StringAuthorConverter implements Converter<String, Author> {
     @Autowired
-    private AuthorDao authorDao;
+    private AuthorRepository authorRepository;
 
     @Override
     public Author convert(String id) {
-        return this.authorDao.findById(Long.parseLong(id));
+        return this.authorRepository.findOne(Long.parseLong(id));
     }
 }

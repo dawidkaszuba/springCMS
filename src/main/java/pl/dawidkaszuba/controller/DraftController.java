@@ -6,12 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.dawidkaszuba.dao.ArticleDao;
-import pl.dawidkaszuba.dao.AuthorDao;
-import pl.dawidkaszuba.dao.CategoriesDao;
 import pl.dawidkaszuba.entity.Article;
 import pl.dawidkaszuba.entity.Author;
 import pl.dawidkaszuba.entity.Category;
+import pl.dawidkaszuba.repository.ArticleRepository;
+import pl.dawidkaszuba.repository.AuthorRepository;
+import pl.dawidkaszuba.repository.CategoryRepository;
 import pl.dawidkaszuba.validator.ValidationDraft;
 
 import javax.validation.groups.Default;
@@ -23,12 +23,11 @@ import java.util.List;
 public class DraftController {
 
     @Autowired
-    private ArticleDao articleDao;
+    private AuthorRepository authorRepository;
     @Autowired
-    private AuthorDao authorDao;
+    private CategoryRepository categoryRepository;
     @Autowired
-    private CategoriesDao categoriesDao;
-
+    private ArticleRepository articleRepository;
 
 
     @GetMapping("/add")
@@ -43,47 +42,46 @@ public class DraftController {
             return "article/add";
         }
         else{
-            this.articleDao.save(article);
+            this.articleRepository.save(article);
             return "redirect:/drafts/list";
         }
     }
 
     @GetMapping("/list")
     public String getAllDrafts(Model model){
-        model.addAttribute("drafts", this.articleDao.getAllDrafts());
+        model.addAttribute("drafts", this.articleRepository.findAllDrafts());
         return "draft/list";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteDraft(@PathVariable Long id){
-        this.articleDao.delete(this.articleDao.findById(id));
+        this.articleRepository.delete(this.articleRepository.findOne(id));
         return "redirect:/drafts/list";
     }
 
     @GetMapping("/edit/{id}")
     public String editDraft(@PathVariable Long id, Model model){
-        model.addAttribute("article",this.articleDao.findById(id));
+        model.addAttribute("article",this.articleRepository.findOne(id));
         return "article/edit";
     }
     @PostMapping("/saveEdited")
     public String saveEditedDraft(@Validated({Default.class}) Article article, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "redirect:/edit/"+article.getId();
-        }else if(article.isDraft()){  //to nie działa....dlaczego
+        }else if(article.isDraft()){  //to nie działa....dlaczego?
             return "draft/list";
         }else {
             return "articles/list";
         }
     }
 
-
     @ModelAttribute("authors")
     public List<Author> getAllAuthors(){
-        return this.authorDao.findAll();
+        return this.authorRepository.findAll();
     }
     @ModelAttribute("categories")
     public List<Category> getAllCategories(){
-        return this.categoriesDao.findAll();
+        return this.categoryRepository.findAll();
     }
 }
 
