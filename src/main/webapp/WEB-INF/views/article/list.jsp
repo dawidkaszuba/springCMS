@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-2">
                     <span>CREATED</span>
-                </div>
+                </div>use w
                 <div class="col-md-5">
                     <span>CONTENT</span>
                 </div>

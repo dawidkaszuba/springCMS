@@ -25,7 +25,4 @@ public class AppInitializer implements WebApplicationInitializer {
         dynamicFilter.addMappingForUrlPatterns(null, true, "/*");
     }
 
-
-
-
 }
